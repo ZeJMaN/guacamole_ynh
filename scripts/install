@@ -32,7 +32,7 @@ sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
 SRC_DIR="~/gacamole_src"
 mkdir $SRC_DIR
 
-fonction check_dep () {
+check_dep () {
 if ! ynh_package_is_installed $DEP 
   then
   echo "$DEP" >> $SRC_DIR/src_dep.lst

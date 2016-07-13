@@ -9,14 +9,14 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$YNH_APP_ARG_DOMAIN
 path=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
-language=$YNH_APP_ARG_LANGUAGE
+#language=$YNH_APP_ARG_LANGUAGE
 
 # Source YunoHost helpers
 . /usr/share/yunohost/helpers
 
 # Save app settings
 ynh_app_setting_set "$app" admin "$admin"
-ynh_app_setting_set "$app" language "$language"
+#ynh_app_setting_set "$app" language "$language"
 
 # Check domain/path availability
 sudo yunohost app checkurl "${domain}${path}" -a "$app" \

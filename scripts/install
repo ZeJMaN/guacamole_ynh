@@ -45,7 +45,7 @@ if [ -f $SRC_DIR/src_dep.lst ]
 fi
 DEP=libcairo2-dev check_dep
 DEP=libpng12-dev check_dep
-DEP=libossp-uuid--dev check_dep
+DEP=libossp-uuid-dev check_dep
 DEP=libfreerdp-dev check_dep
 DEP=libpango1.0-dev check_dep
 DEP=libssh2-1-dev check_dep

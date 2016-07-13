@@ -64,16 +64,14 @@ if [ -f $SRC_DIR/src_dep.lst ]
 		sudo apt-get -y install `cat $SRC_DIR/src_dep.lst` -y -qq
 fi
 
-wget -O $SRC_DIR/guacamole-0.9.9.war http://downloads.sourceforge.net/project/guacamole/current/binary/guacamole-0.9.9.war
-wget -O $SRC_DIR/guacamole-server-0.9.9.tar.gz http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-0.9.9.tar.gz 
-wget -O $SRC_DIR/guacamole-auth-jdbc-0.9.9.tar.gz http://sourceforge.net/projects/guacamole/files/current/extensions/guacamole-auth-jdbc-0.9.9.tar.gz
-wget -O $SRC_DIR/mysql-connector-java-5.1.38.tar.gz http://dev.mysql.com/get/Downloads/Connector/j/mysql-connector-java-5.1.38.tar.gz
-cd $SRC_DIR
-tar -xzf guacamole-server-0.9.9.tar.gz
-tar -xzf guacamole-auth-jdbc-0.9.9.tar.gz
-tar -xzf mysql-connector-java-5.1.38.tar.gz
+
+
+tar -xzf guacamole-server-0.9.9.tar.gz -C $SRC_DIR
+tar -xzf guacamole-auth-jdbc-0.9.9.tar.gz -C $SRC_DIR
+tar -xzf mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
 sudo mkdir -p /etc/guacamole/{lib,extensions}
 sudo mkdir -p /etc/guacamole/lib
+cd $SRC_DIR
 cd guacamole-server-0.9.9
 ./configure --with-init-dir=/etc/init.d
 make

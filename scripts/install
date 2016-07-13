@@ -66,9 +66,9 @@ fi
 
 
 
-tar -xzf guacamole-server-0.9.9.tar.gz -C $SRC_DIR
-tar -xzf guacamole-auth-jdbc-0.9.9.tar.gz -C $SRC_DIR
-tar -xzf mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
+tar -xzf ../sources/guacamole-server-0.9.9.tar.gz -C $SRC_DIR
+tar -xzf ../sources/guacamole-auth-jdbc-0.9.9.tar.gz -C $SRC_DIR
+tar -xzf ../sources/mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
 sudo mkdir -p /etc/guacamole/{lib,extensions}
 sudo mkdir -p /etc/guacamole/lib
 cd $SRC_DIR

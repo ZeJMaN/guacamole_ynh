@@ -29,7 +29,7 @@ sudo apt-get install jetty8 libjetty-extra -y -qq
 sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
 
 # installation des dépendances pour la compilation de guacamole
-SRC_DIR="~/gacamole_src"
+SRC_DIR="/home/admin/gacamole_src"
 mkdir $SRC_DIR
 
 check_dep () {

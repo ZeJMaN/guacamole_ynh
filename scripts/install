@@ -26,7 +26,7 @@ sudo yunohost app checkurl "${domain}${path}" -a "$app" \
 sudo apt-get install jetty8 libjetty-extra -y -qq
 
 ## activer le démarrage de jetty
-sudo sed sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
+sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
 
 # installation des dépendances pour la compilation de guacamole
 SRC_DIR="~/gacamole_src"

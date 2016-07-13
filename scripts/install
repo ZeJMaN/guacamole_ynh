@@ -30,7 +30,10 @@ sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
 
 # installation des dépendances pour la compilation de guacamole
 SRC_DIR="/home/admin/gacamole_src"
+if [ ! -d $SRC_DIR]
+then
 mkdir $SRC_DIR
+fi
 
 check_dep () {
 if ! ynh_package_is_installed $DEP 

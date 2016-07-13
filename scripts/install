@@ -79,8 +79,8 @@ sudo make install
 sudo ldconfig
 sudo systemctl enable guacd
 sudo ln -s /etc/guacamole/guacamole.war /var/lib/jetty8/webapps/
-sudo cp mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/guacamole/lib/
-sudo cp guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
+sudo cp ../mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/guacamole/lib/
+sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
 sudo echo "mysql-hostname: localhost" >> /etc/guacamole/guacamole.properties
 sudo echo "mysql-port: 3306" >> /etc/guacamole/guacamole.properties
 sudo echo "mysql-database: guacamole" >> /etc/guacamole/guacamole.properties

@@ -81,10 +81,6 @@ sudo systemctl enable guacd
 sudo ln -s /etc/guacamole/guacamole.war /var/lib/jetty8/webapps/
 sudo cp ../mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/guacamole/lib/
 sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
-sudo echo "mysql-hostname: localhost" >> /etc/guacamole/guacamole.properties
-sudo echo "mysql-port: 3306" >> /etc/guacamole/guacamole.properties
-sudo echo "mysql-database: guacamole" >> /etc/guacamole/guacamole.properties
-sudo echo "mysql-username: guacamole" >> /etc/guacamole/guacamole.properties
 
 ## manual initialisation SQL (remove in the futur)
 #mysql -u root -pMYSQLROOTPASSWORD
@@ -96,44 +92,30 @@ sudo echo "mysql-username: guacamole" >> /etc/guacamole/guacamole.properties
 #cat guacamole-auth-jdbc-0.9.9/mysql/schema/*.sql | mysql -u root -pMYSQLROOTPASSWORD guacamole_db
 
 
-# This is where you will want to change "PASSWORD"
-echo "mysql-password: PASSWORD" >> /etc/guacamole/guacamole.properties
 rm -rf /usr/share/jetty8/.guacamole
 ln -s /etc/guacamole /usr/share/jetty8/.guacamole
 
 # Restart Tomcat Service
 service jetty8 restart
 
-# Copy source files
-final_path=/opt/$app
-sudo mkdir -p $final_path
-
-
-# Set permissions to app files
-# you may need to make some file and/or directory writeable by www-data (nginx user)
-sudo chown -R root:root $final_path
-
-# If your app use a MySQL database you can use these lines to bootstrap
-# a database, an associated user and save the password in app settings.
-#
-# # Generate MySQL password and create database
+# Generate MySQL password and create database
 dbuser=$app
 dbname=$app
 dbpass=$(ynh_string_random 12)
 ynh_app_setting_set "$app" mysqlpwd "$dbpass"
 ynh_mysql_create_db "$dbname" "$dbuser" "$dbpass"
-#
-# # Load initial SQL into the new database
+
+# Load initial SQL into the new database
 ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jdbc-0.9.9/mysql/schema/*.sql"
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
-sed -i "s@YNH_WWW_PATH@$path@g" ../conf/nginx.conf
-sed -i "s@YNH_WWW_ALIAS@$final_path/@g" ../conf/nginx.conf
+#sed -i "s@YNH_WWW_PATH@$path@g" ../conf/nginx.conf
+#sed -i "s@YNH_WWW_ALIAS@$final_path/@g" ../conf/nginx.conf
 # If a dedicated php-fpm process is used:
 # Don't forget to modify ../conf/nginx.conf accordingly or your app will not work!
 #
 # sudo sed -i "s@YNH_WWW_APP@$app@g" ../conf/nginx.conf
-sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+#sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 
 # clean
 if [ -f $SRC_DIR/src_dep.lst ]

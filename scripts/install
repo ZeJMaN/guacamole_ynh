@@ -119,6 +119,7 @@ ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jd
 #sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 
 # clean
+cd
 if [ -f $SRC_DIR/src_dep.lst ]
 	then 
 		sudo apt-get purge `cat $SRC_DIR/src_dep.lst` -y -qq

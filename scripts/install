@@ -112,13 +112,8 @@ sudo mv $SRC_DIR/guacamole.properties /etc/guacamole
 ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jdbc-0.9.9/mysql/schema/001-create-schema.sql"
 ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jdbc-0.9.9/mysql/schema/002-create-admin-user.sql"
 # Modify Nginx configuration file and copy it to Nginx conf directory
-#sed -i "s@YNH_WWW_PATH@$path@g" ../conf/nginx.conf
-#sed -i "s@YNH_WWW_ALIAS@$final_path/@g" ../conf/nginx.conf
-# If a dedicated php-fpm process is used:
-# Don't forget to modify ../conf/nginx.conf accordingly or your app will not work!
-#
-# sudo sed -i "s@YNH_WWW_APP@$app@g" ../conf/nginx.conf
-#sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+sed -i "s@YNH_WWW_PATH@$path@g" ../conf/nginx.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 
 # clean
 cd

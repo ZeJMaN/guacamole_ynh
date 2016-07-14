@@ -72,6 +72,7 @@ tar -xzf ../sources/mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
 sudo mkdir -p /etc/guacamole/{lib,extensions}
 sudo mkdir -p /etc/guacamole/lib
 sudo mv ../sources/guacamole-0.9.9.war /etc/guacamole
+sudo mv ../sources/guacamole.properties $SRC_DIR
 cd $SRC_DIR
 cd guacamole-server-0.9.9
 ./configure --with-init-dir=/etc/init.d
@@ -105,7 +106,8 @@ dbname=$app
 dbpass=$(ynh_string_random 12)
 ynh_app_setting_set "$app" mysqlpwd "$dbpass"
 ynh_mysql_create_db "$dbname" "$dbuser" "$dbpass"
-
+sed -i "s/CHANGEME/$dbpass/g" $SRC_DIR/guacamole.properties
+sudo mv $SRC_DIR/guacamole.properties /etc/guacamole
 # Load initial SQL into the new database
 ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jdbc-0.9.9/mysql/schema/001-create-schema.sql"
 ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jdbc-0.9.9/mysql/schema/002-create-admin-user.sql"
@@ -126,5 +128,5 @@ if [ -f $SRC_DIR/src_dep.lst ]
 		sudo apt-get autoremove --purge -y -qq
 fi
 rm -rf $SRC_DIR
-
+sudo /etc/init.d/guacd restart
 sudo service nginx reload

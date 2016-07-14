@@ -117,6 +117,7 @@ sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 
 # clean
 cd
+mv $SRC_DIR/src_dep.lst /etc/yunohost/apps/guacamole/
 rm -rf $SRC_DIR
 sudo /etc/init.d/guacd restart
 sudo service nginx reload

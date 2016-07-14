@@ -93,11 +93,11 @@ sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /
 #cat guacamole-auth-jdbc-0.9.9/mysql/schema/*.sql | mysql -u root -pMYSQLROOTPASSWORD guacamole_db
 
 
-rm -rf /usr/share/jetty8/.guacamole
-ln -s /etc/guacamole /usr/share/jetty8/.guacamole
+sudo rm -rf /usr/share/jetty8/.guacamole
+sudo ln -s /etc/guacamole /usr/share/jetty8/.guacamole
 
 # Restart Tomcat Service
-service jetty8 restart
+sudo service jetty8 restart
 
 # Generate MySQL password and create database
 dbuser=$app

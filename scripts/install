@@ -112,7 +112,7 @@ ynh_mysql_connect_as "$dbuser" "$dbpass" "$dbname" < "$SRC_DIR/guacamole-auth-jd
 
 # clean
 cd
-mv $SRC_DIR/src_dep.lst /etc/yunohost/apps/guacamole/
+sudo mv $SRC_DIR/src_dep.lst /etc/yunohost/apps/guacamole/
 rm -rf $SRC_DIR
 sudo /etc/init.d/guacd restart
 sudo service nginx reload

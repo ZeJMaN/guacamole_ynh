@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# See comments in install script
+app=$YNH_APP_INSTANCE_NAME
+
+# Source YunoHost helpers
+. /usr/share/yunohost/helpers
+
+# Retrieve app settings
+domain=$(ynh_app_setting_get "$app" domain)
+
+
+# stop guacamole & jetty
+sudo /etc/init.d/guacd stop
+sudo service jetty8 stop
+
+# uninstall jetty & guacamole dependences 
+sudo apt-get purge jetty8 libjetty-extra -y -qq
+sudo apt-get purge `cat /etc/yunohost/apps/guacamole/src_dep.lst`
+sudo apt-get autoremove --purge -y -qq
+rm -rf /etc/guacamole
+rm -rf /opt/guacamole
+rm -rf /etc/nginx/conf.d/$domain.d/$app.conf
+sudo service nginx reload

@@ -90,7 +90,7 @@ sudo systemctl enable guacd
 sudo ln -s /etc/guacamole/guacamole.war /var/lib/jetty8/webapps/
 sudo cp ../mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/guacamole/lib/
 sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
-sudo cp ../guacamole-auth-ldap-0.9.9/mysql/guacamole-auth-ldap-0.9.9.jar /etc/guacamole/extensions/
+sudo cp ../guacamole-auth-ldap-0.9.9/guacamole-auth-ldap-0.9.9.jar /etc/guacamole/extensions/
 
 sudo rm -rf /usr/share/jetty8/.guacamole
 sudo ln -s /etc/guacamole /usr/share/jetty8/.guacamole

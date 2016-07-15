@@ -22,6 +22,9 @@ ynh_app_setting_set "$app" admin "$admin"
 sudo yunohost app checkurl "${domain}${path}" -a "$app" \
     || ynh_die "Path not available: ${domain}${path}"
 
+
+sudo ynh_package_update
+
 # install jetty 	
 sudo apt-get install jetty8 libjetty-extra -y -qq
 
@@ -69,6 +72,7 @@ fi
 tar -xzf ../sources/guacamole-server-0.9.9.tar.gz -C $SRC_DIR
 tar -xzf ../sources/guacamole-auth-jdbc-0.9.9.tar.gz -C $SRC_DIR
 tar -xzf ../sources/mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
+tar -xzf ../sources/guacamole-auth-ldap-0.9.9.tar.gz -C $SRC_DIR
 sudo mkdir -p /etc/guacamole/{lib,extensions}
 sudo mkdir -p /etc/guacamole/lib
 sudo mv ../sources/guacamole-0.9.9.war /etc/guacamole
@@ -83,7 +87,7 @@ sudo systemctl enable guacd
 sudo ln -s /etc/guacamole/guacamole.war /var/lib/jetty8/webapps/
 sudo cp ../mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/guacamole/lib/
 sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
-
+sudo cp ../guacamole-auth-ldap-0.9.9/mysql/guacamole-auth-ldap-0.9.9.jar /etc/guacamole/extensions/
 ## manual initialisation SQL (remove in the futur)
 #mysql -u root -pMYSQLROOTPASSWORD
 #create database guacamole_db;

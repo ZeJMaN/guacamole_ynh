@@ -23,7 +23,7 @@ sudo yunohost app checkurl "${domain}${path}" -a "$app" \
     || ynh_die "Path not available: ${domain}${path}"
 
 
-sudo ynh_package_update
+sudo apt-get update -y -qq
 
 # install jetty 	
 sudo apt-get install jetty8 libjetty-extra -y -qq

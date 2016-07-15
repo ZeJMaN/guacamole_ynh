@@ -82,7 +82,7 @@ sudo mv ../sources/guacamole-0.9.9.war /var/lib/jetty8/webapps/guacamole.war
 sudo mv ../conf/guacamole.properties $SRC_DIR
 cd $SRC_DIR
 cd guacamole-server-0.9.9
-./configure --with-init-dir=/etc/init.d
+./configure   --prefix=/opt/guacamole --with-init-dir=/etc/init.d
 make
 sudo make install
 sudo ldconfig

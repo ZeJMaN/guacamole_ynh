@@ -26,10 +26,10 @@ sudo yunohost app checkurl "${domain}${path}" -a "$app" \
 sudo apt-get update -y -qq
 
 # install jetty 	
-sudo apt-get install jetty8 libjetty-extra -y -qq
+sudo apt-get install jetty9 libjetty9-extra-java -y -qq
 
 ## activer le démarrage de jetty
-sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty8
+sudo sed -i "s/NO_START=1/NO_START=0/g" /etc/default/jetty9
 
 # installation des dépendances pour la compilation de guacamole
 SRC_DIR="/home/admin/gacamole_src"
@@ -78,7 +78,7 @@ tar -xzf ../sources/mysql-connector-java-5.1.38.tar.gz -C $SRC_DIR
 tar -xzf ../sources/guacamole-auth-ldap-0.9.9.tar.gz -C $SRC_DIR
 sudo mkdir -p /etc/guacamole/{lib,extensions}
 sudo mkdir -p /etc/guacamole/lib
-sudo mv ../sources/guacamole-0.9.9.war /var/lib/jetty8/webapps/guacamole.war
+sudo mv ../sources/guacamole-0.9.9.war /var/lib/jetty9/webapps/guacamole.war
 sudo mv ../conf/guacamole.properties $SRC_DIR
 cd $SRC_DIR
 cd guacamole-server-0.9.9
@@ -91,11 +91,11 @@ sudo cp ../mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /etc/
 sudo cp ../guacamole-auth-jdbc-0.9.9/mysql/guacamole-auth-jdbc-mysql-0.9.9.jar /etc/guacamole/extensions/
 sudo cp ../guacamole-auth-ldap-0.9.9/guacamole-auth-ldap-0.9.9.jar /etc/guacamole/extensions/
 
-sudo rm -rf /usr/share/jetty8/.guacamole
-sudo ln -s /etc/guacamole /usr/share/jetty8/.guacamole
+sudo rm -rf /usr/share/jetty9/.guacamole
+sudo ln -s /etc/guacamole /usr/share/jetty9/.guacamole
 
 # Restart Tomcat Service
-sudo service jetty8 restart
+sudo service jetty9 restart
 
 # Generate MySQL password and create database
 dbuser=$app
